@@ -1,330 +1,166 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Alyssa | Front-End Developer</title>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-<style>
-  /* Basic Reset */
-  * {margin:0; padding:0; box-sizing:border-box; font-family: 'Arial', sans-serif; color:#fff;}
-  body, html {height:100%; width:100%; overflow-x:hidden; position:relative;}
-  a {text-decoration:none; color:inherit;}
-  img {max-width:100%; display:block;}
-
-  /* Fluid Background */
-  #bgCanvas {
-    position:fixed; top:0; left:0; width:100%; height:100%; z-index:-1;
-  }
-
-  /* Navigation */
-  nav {
-    width:100%; display:flex; justify-content:space-between; align-items:center;
-    padding:1rem 5%; position:fixed; top:0; left:0; z-index:100; background:rgba(0,0,0,0.3);
-  }
-  nav h1{font-size:1.5rem;}
-  .desktop-menu{display:flex; gap:1rem;}
-  .desktop-menu li{list-style:none;}
-  .desktop-menu li a{padding:0.5rem 1rem; transition:0.3s;}
-  .desktop-menu li a:hover{background:rgba(255,255,255,0.1); border-radius:5px;}
-  .hamburger{display:none; cursor:pointer; font-size:1.8rem;}
-
-  /* Sections */
-  section{padding:8rem 10%; min-height:100vh; display:flex; flex-wrap:wrap; align-items:center; justify-content:space-between;}
-  section h2{font-size:2rem; margin-bottom:1rem; color:#a69fff;}
-  section p{max-width:600px; line-height:1.6; color:#d3d3e6;}
-
-  /* Home Section */
-  #home .left{flex:1; padding-right:2rem;}
-  #home .left h1{font-size:2.5rem; margin:0.5rem 0;}
-  #home .left span{color:#a69fff;}
-  #home .right{flex:1;}
-  #home .right img{border-radius:10px; box-shadow:0 0 20px rgba(0,0,0,0.5);}
-
-  /* About & Skills */
-  .about-skills{display:flex; gap:3rem;}
-  .about{flex:1;}
-  .about ul.about-list{margin-top:1rem; list-style:disc; padding-left:1.2rem;}
-  .skills{flex:1;}
-  .skill{margin-bottom:1rem;}
-  .skill-name{display:block; margin-bottom:0.3rem;}
-  .skill-bar{background:rgba(255,255,255,0.1); width:100%; height:20px; border-radius:10px; overflow:hidden;}
-  .skill-bar .bar{height:100%; width:0; background:#a69fff; border-radius:10px; transition:width 1s;}
-  .skill-bar .bar.visible{width:var(--percent);}
-  .percent{margin-left:0.5rem;}
-
-  /* Projects */
-  .projects-grid{display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:2rem; margin-top:2rem;}
-  .project-card{background:rgba(255,255,255,0.05); border-radius:10px; overflow:hidden; box-shadow:0 0 15px rgba(0,0,0,0.5);}
-  .project-card img{width:100%; height:180px; object-fit:cover;}
-  .project-card h3{text-align:center; margin:0.5rem 0;}
-  .description-box{padding:0.5rem 1rem; text-align:center;}
-  .project-btn{display:inline-block; margin-top:0.5rem; padding:0.3rem 0.8rem; background:#a69fff; border-radius:5px; color:#fff;}
-
-  /* Experience Timeline */
-  #experience{flex-direction:column; background:rgba(0,0,0,0.2); border-radius:10px;}
-  .timeline{position:relative; margin-left:20px; padding-left:20px; border-left:3px solid rgba(255,255,255,0.3);}
-  .timeline-item{position:relative; margin-bottom:3rem; opacity:0; transform:translateY(40px); transition:all 1s;}
-  .timeline-item.visible{opacity:1; transform:translateY(0);}
-  .timeline-item::before{content:""; position:absolute; left:-12px; top:0; width:20px; height:20px; background:rgba(255,255,255,0.2); border:3px solid #a69fff; border-radius:50%;}
-  .timeline-item h3{font-size:1.2rem; color:#a69fff; margin-bottom:0.3rem;}
-  .timeline-item h4{font-size:1rem; margin-bottom:0.5rem;}
-  .timeline-item p{font-size:0.95rem; line-height:1.6; color:#d3d3e6;}
-
-  /* Resume */
-  .resume-section{text-align:center;}
-  .download-btn{display:inline-block; padding:0.5rem 1rem; background:#a69fff; border-radius:5px; margin-top:1rem;}
-
-  /* Contact */
-  .contact-section{text-align:center;}
-  .contact-icons{display:flex; justify-content:center; gap:1.5rem; margin-top:1rem;}
-  .icon-link{font-size:1.5rem; transition:0.3s;}
-  .icon-link:hover{color:#a69fff;}
-  .location{margin-top:1rem; font-size:0.9rem; color:#d3d3e6;}
-
-  /* Sidebar */
-  .sidebar{position:fixed; top:0; left:-250px; width:250px; height:100%; background:rgba(0,0,0,0.9); z-index:200; padding-top:60px; transition:0.3s;}
-  .sidebar.open{left:0;}
-  .sidebar .close{position:absolute; top:20px; right:20px; font-size:2rem; cursor:pointer;}
-  .sidebar a{display:block; padding:1rem 2rem; color:#fff; transition:0.3s;}
-  .sidebar a:hover{background:#a69fff; border-radius:5px;}
-
-  /* Responsive */
-  @media(max-width:900px){
-    .desktop-menu{display:none;}
-    .hamburger{display:block;}
-    .about-skills{flex-direction:column;}
-    #home{flex-direction:column;}
-    #home .left{padding-right:0;}
-    #home .right{margin-top:2rem;}
-  }
-</style>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Alyssa | Front-End Developer</title>
+  <link rel="stylesheet" href="style.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
 </head>
 <body>
+  <!-- Water Effect Background -->
+  <div class="water"></div>
 
-<canvas id="bgCanvas"></canvas>
-
-<!-- Navigation -->
-<nav>
-  <h1>Profile</h1>
-  <ul class="desktop-menu">
-    <li><a href="#home">Home</a></li>
-    <li><a href="#about">About Me</a></li>
-    <li><a href="#projects">Projects</a></li>
-    <li><a href="#experience">Experience</a></li>
-    <li><a href="#resume">Resume</a></li>
-    <li><a href="#contact">Contact</a></li>
-  </ul>
-  <div class="hamburger" id="hamburger">&#9776;</div>
-</nav>
-
-<!-- Sidebar -->
-<div class="sidebar" id="sidebar">
-  <span class="close" id="close">&times;</span>
-  <a href="#home">Home</a>
-  <a href="#about">About Me</a>
-  <a href="#projects">Projects</a>
-  <a href="#experience">Experience</a>
-  <a href="#resume">Resume</a>
-  <a href="#contact">Contact</a>
-</div>
-
-<!-- Main Sections -->
-<section id="home">
-  <div class="left">
-    <h3>Hello,</h3>
-    <h1>I am <br><span>Alyssa</span></h1>
-    <p>Aspiring front-end developer with background in CRM & digital marketing. Proficient in HTML, CSS, JS, WordPress, FlutterFlow.</p>
-    <a href="#about">Read More</a>
+  <!-- Sidebar -->
+  <div class="sidebar" id="sidebar">
+    <span class="close" id="close">&times;</span>
+    <a href="#home">Home</a>
+    <a href="#about">About Me</a>
+    <a href="#projects">Projects</a>
+    <a href="#experience">Experience</a>
+    <a href="#resume">Resume</a>
+    <a href="#contact">Contact</a>
   </div>
-  <div class="right">
-    <img src="img/Potrait.jpg" alt="Profile Picture">
-  </div>
-</section>
 
-<section id="about" class="about-skills">
-  <div class="about">
-    <h2>About Me</h2>
-    <p>Recent graduate from Universiti Teknologi MARA, Puncak Perdana, Bachelor of Information Science (Hons).</p>
-    <ul class="about-list">
-      <li>Web Design & Development (HTML, CSS, JS)</li>
-      <li>Object-Oriented Programming</li>
-      <li>Mobile App Development (FlutterFlow, Firebase, Kodular)</li>
-      <li>Database Management (MySQL)</li>
-      <li>CMS & WordPress</li>
+  <!-- Navigation -->
+  <nav>
+    <h1>Profile</h1>
+    <ul class="desktop-menu">
+      <li><a href="#home">Home</a></li>
+      <li><a href="#about">About Me</a></li>
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#resume">Resume</a></li>
+      <li><a href="#contact" id="sub">Contact</a></li>
     </ul>
-    <div class="tech-stack">
-      <h3>💻 Tech Stack</h3>
+    <div class="hamburger" id="hamburger">&#9776;</div>
+  </nav>
+
+  <!-- Main Content -->
+  <div class="main_content">
+
+    <!-- Home Section -->
+    <section id="home" class="section home">
+      <div class="home-content">
+        <h3>Hello,</h3>
+        <h1>I am <span>Alyssa</span></h1>
+        <p>Aspiring front-end developer with experience in building responsive landing pages, designing website assets, and managing digital campaigns. Proficient in HTML, CSS, JavaScript, WordPress, and FlutterFlow.</p>
+        <a href="#about">Read More</a>
+      </div>
+      <div class="home-image">
+        <img src="img/Potrait.jpg" alt="Profile Picture" />
+      </div>
+    </section>
+
+    <!-- About & Skills Section -->
+    <section id="about" class="section about-skills">
+      <h2>About Me</h2>
+      <p>I’m a recent graduate from <strong>Universiti Teknologi MARA</strong> with a Bachelor in Information Science (Hons). I focus on web and app development, responsive design, and creating accessible digital experiences.</p>
+      
       <ul class="about-list">
-        <li>Languages: HTML, CSS, JavaScript, PHP</li>
-        <li>CMS & Builders: WordPress, Elementor</li>
-        <li>Mobile: FlutterFlow, Firebase, Kodular</li>
-        <li>Tools: Google Analytics, Canva, GTM</li>
+        <li>Web Design and Development (HTML, CSS, JavaScript)</li>
+        <li>Mobile App Development (FlutterFlow, Firebase)</li>
+        <li>CMS: WordPress</li>
+        <li>Database Management (MySQL)</li>
+        <li>Content & Digital Marketing</li>
       </ul>
-    </div>
-  </div>
-  <div class="skills">
-    <h2>Skills</h2>
-    <div class="skill">
-      <span class="skill-name">HTML</span>
-      <div class="skill-bar"><div class="bar" style="--percent:95%"></div></div>
-      <span class="percent">95%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">CSS</span>
-      <div class="skill-bar"><div class="bar" style="--percent:90%"></div></div>
-      <span class="percent">90%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">JavaScript</span>
-      <div class="skill-bar"><div class="bar" style="--percent:85%"></div></div>
-      <span class="percent">85%</span>
-    </div>
-    <div class="skill">
-      <span class="skill-name">WordPress</span>
-      <div class="skill-bar"><div class="bar" style="--percent:90%"></div></div>
-      <span class="percent">90%</span>
-    </div>
-  </div>
-</section>
 
-<section id="projects">
-  <h2>Projects</h2>
-  <div class="projects-grid">
-    <div class="project-card">
-      <img src="img/DoveHeart.jpg" alt="DoveHeart System">
-      <h3>DoveHeart System</h3>
-      <div class="description-box">
-        <p>Final year project: blood donation system for healthcare staff and mobile apps for public.</p>
+      <h3>Skills</h3>
+      <div class="skills">
+        <div class="skill"><span class="skill-name">HTML</span><div class="skill-bar"><div class="bar" style="--percent:95%"></div></div><span class="percent">95%</span></div>
+        <div class="skill"><span class="skill-name">CSS</span><div class="skill-bar"><div class="bar" style="--percent:90%"></div></div><span class="percent">90%</span></div>
+        <div class="skill"><span class="skill-name">JavaScript</span><div class="skill-bar"><div class="bar" style="--percent:85%"></div></div><span class="percent">85%</span></div>
+        <div class="skill"><span class="skill-name">WordPress</span><div class="skill-bar"><div class="bar" style="--percent:90%"></div></div><span class="percent">90%</span></div>
       </div>
-    </div>
-    <div class="project-card">
-      <img src="img/WEBCONVIST.jpg" alt="Perak Royal Family WARC">
-      <h3>Perak Royal Family WARC</h3>
-      <div class="description-box">
-        <p>Web archiving project for Perak Royal Family content.</p>
-        <a href="https://youtu.be/otTSTE9RSd0" class="project-btn" target="_blank">View Project</a>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects" class="section projects-section">
+      <h2>Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="img/DoveHeart.jpg" alt="DoveHeart System">
+              <h3>DoveHeart System</h3>
+            </div>
+            <div class="description-box">
+              <p>Blood donation system with website for staff and mobile apps for public donation management.</p>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="img/WEBCONVIST.jpg" alt="Perak Royal Family WARC">
+              <h3>Perak Royal Family WARC</h3>
+            </div>
+            <div class="description-box">
+              <p>Preserving web content of Perak Royal Family. <a href="https://youtu.be/otTSTE9RSd0" target="_blank">View Project</a></p>
+            </div>
+          </div>
+        </div>
+        <div class="project-card">
+          <div class="card-inner">
+            <div class="card-front">
+              <img src="img/Profile.jpg" alt="Personal Profile">
+              <h3>Personal Profile Project</h3>
+            </div>
+            <div class="description-box">
+              <p>Designed and coded personal website for Diploma project. <a href="https://nralyssa.github.io/index.html" target="_blank">View Project</a></p>
+            </div>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="project-card">
-      <img src="img/Profile.jpg" alt="Personal Profile">
-      <h3>Personal Profile</h3>
-      <div class="description-box">
-        <p>Designed a personal website for a Diploma project.</p>
-        <a href="https://nralyssa.github.io/index.html" class="project-btn" target="_blank">View Project</a>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience" class="section timeline-section">
+      <h2>Experience</h2>
+      <div class="timeline-container">
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Jul 2024 - Present</h3>
+            <h4>Photobook Worldwide Sdn Bhd | CRM Executive</h4>
+            <p>Built dynamic landing pages, designed banners, managed multi-country email campaigns, and analyzed performance using Google Analytics.</p>
+          </div>
+        </div>
+        <div class="timeline-item">
+          <div class="timeline-content">
+            <h3>Sept 2023 - Jan 2024</h3>
+            <h4>Innovative Hub | Digital Marketing Intern</h4>
+            <p>Managed Google Ads campaigns, performed SEO optimizations, and updated client websites using WordPress.</p>
+          </div>
+        </div>
       </div>
-    </div>
-    <div class="project-card">
-      <img src="img/Swan.jpg" alt="E-Commerce Website">
-      <h3>E-Commerce Website</h3>
-      <div class="description-box">
-        <p>Designed and coded an e-commerce site using HTML, CSS, JS.</p>
-        <a href="https://weinyyu.github.io/swancompany/index.html" class="project-btn" target="_blank">View Project</a>
+    </section>
+
+    <!-- Resume Section -->
+    <section id="resume" class="section resume-section">
+      <h2>Resume</h2>
+      <div class="resume-card">
+        <p>View or download my latest resume below.</p>
+        <a href="resume/NUR ALYSSA SYAFIQAH BINTI ZAINON_RESUME_FRONT_END_DEVELOPER.pdf" class="download-btn" download>⬇️ Download Resume (PDF)</a>
       </div>
-    </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="section contact-section">
+      <div class="contact-container">
+        <h2>Get in Touch</h2>
+        <p>Let's connect — whether you have a project in mind or just want to say hello.</p>
+        <div class="contact-icons">
+          <a href="mailto:nuralyssasyafiqah.zainon@gmail.com" class="icon-link" title="Email"><i class="fas fa-envelope"></i></a>
+          <a href="https://www.linkedin.com/in/nur-alyssa-syafiqah-binti-zainon-b96843248/" class="icon-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
+          <a href="https://github.com/nuralyssa309" class="icon-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
+        </div>
+        <p class="location"><i class="fas fa-map-marker-alt"></i> Sungai Buloh, Selangor</p>
+      </div>
+    </section>
+
   </div>
-</section>
 
-<section id="experience">
-  <h2>Experience</h2>
-  <div class="timeline">
-    <div class="timeline-item">
-      <h3>Jul 2024 - Present</h3>
-      <h4>Photobook Worldwide Sdn Bhd | CRM Executive</h4>
-      <p>Nearly one year supporting CRM initiatives, building landing pages, designing banners, managing campaigns across countries.</p>
-    </div>
-    <div class="timeline-item">
-      <h3>Sept 2023 - Jan 2024</h3>
-      <h4>Innovative Hub | Digital Marketing Intern</h4>
-      <p>Developed Google Ads campaigns, conducted SEO research, maintained WordPress sites.</p>
-    </div>
-  </div>
-</section>
-
-<section id="resume" class="resume-section">
-  <h2>Resume</h2>
-  <p>View or download my latest resume with details on education, experience, technical skills, and projects.</p>
-  <a href="resume/NUR ALYSSA SYAFIQAH BINTI ZAINON_RESUME_FRONT_END_DEVELOPER.pdf" class="download-btn" download>⬇️ Download Resume (PDF)</a>
-</section>
-
-<section id="contact" class="contact-section">
-  <h2>Get in Touch</h2>
-  <p>Let's connect — whether you have a project in mind or just want to say hello.</p>
-  <div class="contact-icons">
-    <a href="mailto:nuralyssasyafiqah.zainon@gmail.com" class="icon-link" title="Email"><i class="fas fa-envelope"></i></a>
-    <a href="https://www.linkedin.com/in/nur-alyssa-syafiqah-binti-zainon-b96843248/" class="icon-link" target="_blank" title="LinkedIn"><i class="fab fa-linkedin"></i></a>
-    <a href="https://github.com/nuralyssa309" class="icon-link" target="_blank" title="GitHub"><i class="fab fa-github"></i></a>
-  </div>
-  <p class="location"><i class="fas fa-map-marker-alt"></i> Sungai Buloh, Selangor</p>
-</section>
-
-<script>
-  // Sidebar toggle
-  const hamburger = document.getElementById('hamburger');
-  const sidebar = document.getElementById('sidebar');
-  const closeBtn = document.getElementById('close');
-  const links = sidebar.querySelectorAll('a');
-
-  hamburger.addEventListener('click', () => {
-    sidebar.classList.add('open');
-    document.body.style.overflow='hidden';
-  });
-  closeBtn.addEventListener('click', () => {
-    sidebar.classList.remove('open');
-    document.body.style.overflow='';
-  });
-  links.forEach(link => link.addEventListener('click',()=>{
-    sidebar.classList.remove('open');
-    document.body.style.overflow='';
-  }));
-
-  // Skills animation
-  const bars = document.querySelectorAll(".skill-bar .bar");
-  const observer = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add("visible");
-      }
-    });
-  }, {threshold:0.5});
-  bars.forEach(bar=>observer.observe(bar));
-
-  // Timeline fade-in
-  const timelineItems = document.querySelectorAll('.timeline-item');
-  const timelineObserver = new IntersectionObserver(entries=>{
-    entries.forEach(entry=>{
-      if(entry.isIntersecting){
-        entry.target.classList.add('visible');
-        timelineObserver.unobserve(entry.target);
-      }
-    });
-  }, {threshold:0.2});
-  timelineItems.forEach(item=>timelineObserver.observe(item));
-
-  // Fluid gradient background
-  const canvas = document.getElementById('bgCanvas');
-  const ctx = canvas.getContext('2d');
-  canvas.width=window.innerWidth;
-  canvas.height=window.innerHeight;
-  let gradientOffset=0;
-
-  function drawBackground(){
-    gradientOffset+=0.002;
-    const grad = ctx.createLinearGradient(0,0,canvas.width,canvas.height);
-    grad.addColorStop(0, `hsl(${(gradientOffset*360)%360},80%,15%)`);
-    grad.addColorStop(0.5, `hsl(${((gradientOffset*360)+120)%360},80%,15%)`);
-    grad.addColorStop(1, `hsl(${((gradientOffset*360)+240)%360},80%,15%)`);
-    ctx.fillStyle = grad;
-    ctx.fillRect(0,0,canvas.width,canvas.height);
-    requestAnimationFrame(drawBackground);
-  }
-  drawBackground();
-
-  window.addEventListener('resize',()=>{
-    canvas.width=window.innerWidth;
-    canvas.height=window.innerHeight;
-  });
-</script>
-
+  <script src="script.js"></script>
 </body>
 </html>
+
